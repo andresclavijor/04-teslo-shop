@@ -11,3 +11,5 @@
 5. Levantar la base de datos
    `docker-componse up`
 6. Levantar proyecto `npm run start:dev`
+7. Ejecutar SEED
+   `http://localhost:3000/api/seed`
