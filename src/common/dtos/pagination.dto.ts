@@ -1,16 +1,26 @@
-import { Type } from "class-transformer";
-import { IsOptional, IsPositive, Min } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
+import { IsOptional, IsPositive, Min } from 'class-validator';
 
-export class PaginationDto{
+export class PaginationDto {
+  @ApiProperty({
+    default: 10,
+    description: 'How many rows do you need',
+    required: false,
+  })
+  @IsOptional()
+  @IsPositive()
+  @Type(() => Number)
+  limit?: number;
 
-    @IsOptional()
-    @IsPositive()
-    @Type(()=>Number)
-    limit?:number;
-
-    @IsOptional()
-    @Min(0)
-    @IsPositive()
-    @Type(()=>Number) //enable InmplicitConversion
-    offset?: number;
+  @ApiProperty({
+    default: 0,
+    description: 'How many rows do want to skipt',
+    required: false,
+  })
+  @IsOptional()
+  @Min(0)
+  @IsPositive()
+  @Type(() => Number) //enable InmplicitConversion
+  offset?: number;
 }
