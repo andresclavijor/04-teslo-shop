@@ -15,8 +15,10 @@ import { MessagesWsModule } from './messages-ws/messages-ws.module';
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'public'),
       exclude: ['/api/(.*)'],
-    }), 
+    }),
     TypeOrmModule.forRoot({
+      ssl: process.env.STAGE == 'prod',
+      extra: process.env.STAGE == 'prod' ? { rejectUnauthorized: false } : null,
       type: 'postgres',
       host: process.env.DB_HOST,
       port: +process.env.DB_PORT,
