@@ -15,6 +15,8 @@ async function bootstrap() {
     }),
   );
 
+  app.enableCors();
+
   const config = new DocumentBuilder()
     .addBearerAuth()
     .setTitle('Teslo RestFull API')
